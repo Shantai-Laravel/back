@@ -4,6 +4,7 @@ namespace Admin\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Promotion;
+use App\Models\PromoSection;
 use App\Models\Traduction;
 use App\Models\Product;
 use App\Models\TraductionTranslation;
@@ -128,6 +129,46 @@ class PromotionsController extends Controller
                 'seo_keywords' => request('seo_keywords_' . $lang->lang)
             ]);
         endforeach;
+
+        // dd($request->all());
+        foreach ($request->get('section_body') as $key => $section) {
+            $checkSection = PromoSection::where('promotion_id', $id)->where('number', $key)->first();
+
+            if (!is_null($checkSection)) {
+                $checkSection->translations()->delete();
+                foreach ($this->langs as $lang):
+                    $checkSection->translations()->create([
+                        'lang_id' => $lang->id,
+                        'body' => $request->get('section_body')[$key][$lang->id],
+                    ]);
+                endforeach;
+            }else{
+                $promoSection = PromoSection::create([
+                    'promotion_id' => $id,
+                    'number' => $key,
+                ]);
+
+                foreach ($this->langs as $lang):
+                    $promoSection->translations()->create([
+                        'lang_id' => $lang->id,
+                        'body' => $request->get('section_body')[$key][$lang->id],
+                    ]);
+                endforeach;
+            }
+        }
+
+        if ($request->file('image_section')) {
+            foreach ($request->file('image_section') as $number => $image) {
+                $checkSection = PromoSection::where('promotion_id', $id)->where('number', $number)->first();
+                if (!is_null($checkSection)) {
+                    $imageSection = time() . '-' . $image->getClientOriginalName();
+                    $image->move('images/promotions', $imageSection);
+                    $checkSection->update([
+                        'image' => $imageSection
+                    ]);
+                }
+            }
+        }
 
         return redirect()->back();
     }
