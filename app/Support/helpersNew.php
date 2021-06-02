@@ -6,6 +6,7 @@ function getPromotionSection($promotionId, $number, $lang)
         ->join('promos_sections_translation', 'promos_sections_translation.promo_section_id', '=' ,'promos_sections.id')
         ->where('lang_id', $lang)
         ->where('number', $number)
+        ->where('promotion_id', $promotionId)
         ->first();
 
     if (is_null($promoSection)){
