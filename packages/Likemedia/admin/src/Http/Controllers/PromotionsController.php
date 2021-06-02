@@ -49,7 +49,6 @@ class PromotionsController extends Controller
         $promotion = new Promotion();
         $promotion->alias = str_slug(request('title_'.$this->lang));
         $promotion->active = 1;
-        $promotion->active = 1;
         $promotion->position = 1;
         $promotion->img = $img;
         $promotion->img_mobile = $img_mobile;
@@ -106,7 +105,9 @@ class PromotionsController extends Controller
         }
 
         $promotion = Promotion::findOrFail($id);
-        $promotion->alias = str_slug(request('title_'.$this->lang));
+        if (!$promotion->alias) {
+            $promotion->alias = str_slug(request('title_en'));
+        }
         $promotion->active = 1;
         $promotion->position = 1;
         $promotion->img = $img;
