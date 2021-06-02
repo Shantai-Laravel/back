@@ -43,7 +43,7 @@ class ServiceController extends ApiController
         $data['banners'] = Banner::get();
 
 
-        $data['promotions'] = Promotion::with(['translation'])
+        $data['promotions'] = Promotion::with(['translation', 'promoSections.translation'])
                                 ->where('active', 1)
                                 ->orderBy('position', 'asc')
                                 ->get();
