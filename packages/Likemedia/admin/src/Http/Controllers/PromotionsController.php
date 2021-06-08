@@ -124,6 +124,7 @@ class PromotionsController extends Controller
                 'description' => request('description_' . $lang->lang),
                 'body' => request('body_' . $lang->lang),
                 'btn_text' => request('btn_text_' . $lang->lang),
+                'bot_message' => request('bot_message_' . $lang->lang),
                 'seo_text' => request('seo_text_' . $lang->lang),
                 'seo_title' => request('seo_title_' . $lang->lang),
                 'seo_description' => request('seo_descr_' . $lang->lang),

@@ -17,6 +17,7 @@ class PromotionTranslation extends Model
         'btn_text',
         'banner',
         'banner_mob',
+        'bot_message',
         'seo_text',
         'seo_title',
         'seo_description',

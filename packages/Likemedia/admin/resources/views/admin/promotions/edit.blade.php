@@ -58,7 +58,14 @@
                                 </div>
                                 @endif
                             @endforeach
-
+                            @foreach($promotion->translations as $translation)
+                                @if($translation->lang_id == $lang->id && !is_null($translation->lang_id))
+                                <div class="form-group">
+                                    <label for="bot_message_{{ $lang->lang }}">Bot Message [{{ $lang->lang }}]</label>
+                                    <textarea name="bot_message_{{ $lang->lang }}" class="form-control">{{ $translation->bot_message }}</textarea>
+                                </div>
+                                @endif
+                            @endforeach
                             @foreach($promotion->translations as $translation)
                                 @if($translation->lang_id == $lang->id && !is_null($translation->lang_id))
                                 <div class="form-group">
@@ -159,7 +166,7 @@
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse{{ $lang->id }}{{ $i }}">
-                                                <i class="fa fa-ellipsis-v"></i>  Section #{{ $i }} [{{ $lang->lang }}] 	
+                                                <i class="fa fa-ellipsis-v"></i>  Section #{{ $i }} [{{ $lang->lang }}]
                                             </a>
                                         </div>
                                         <div id="collapse{{ $lang->id }}{{ $i }}" class="accordion-body collapse">

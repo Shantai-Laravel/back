@@ -20,6 +20,7 @@ class BlogCategoryTranslation extends Model
                         'seo_description',
                         'seo_keywords',
                         'link',
+                        'bot_message',
                     ];
 
     public function category()

@@ -245,12 +245,12 @@ class BlogCategoryController extends Controller
                 'seo_title' => request('seo_title_' . $lang->lang),
                 'seo_description' => request('seo_description_' . $lang->lang),
                 'seo_keywords' => request('seo_keywords_' . $lang->lang),
+                'bot_message' => request('bot_message_' . $lang->lang),
             ]);
         endforeach;
 
-
-        $this->addAnchor($request, $blogCategory);
-        $this->addNewAnchor($request, $blogCategory);
+        // $this->addAnchor($request, $blogCategory);
+        // $this->addNewAnchor($request, $blogCategory);
 
         session()->flash('message', 'New item has been updated!');
 

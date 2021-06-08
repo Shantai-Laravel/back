@@ -68,6 +68,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Bot Message[{{ $lang->lang }}]</label>
+                                        <textarea name="bot_message_{{ $lang->lang }}" height="300" class="form-control">@foreach($category->translations as $translation)@if($translation->lang_id == $lang->id){{ $translation->bot_message }}@endif @endforeach</textarea>
+                                    </div>
                                     <div class="col-md-4">
                                         <label>Seo Title[{{ $lang->lang }}]</label>
                                         <input type="text" name="seo_title_{{ $lang->lang }}" class="form-control"
@@ -102,6 +106,7 @@
                                         <label>Seo Text[{{ $lang->lang }}]</label>
                                         <textarea name="seo_text_{{ $lang->lang }}" height="300" class="form-control">@foreach($category->translations as $translation)@if($translation->lang_id == $lang->id){{ $translation->seo_text }}@endif @endforeach</textarea>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
